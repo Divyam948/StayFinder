@@ -76,6 +76,11 @@ const sessionOptions = {
 //     res.send("Hi, I am root");
 // });
 
+app.use((req, res, next) => {
+    res.locals.currUser = req.user;
+    next();
+});
+
 
 app.use(session(sessionOptions));
 app.use(flash());
