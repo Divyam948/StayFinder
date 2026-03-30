@@ -1,0 +1,33 @@
+/* Responsive Image on Show Page */
+.show-img {
+    height: 30vh; /* Shorter on mobile */
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+@media (min-width: 768px) {
+    .show-img {
+        height: 350px; /* Taller on desktop */
+    }
+}
+
+/* Responsive Map */
+#map {
+    height: 300px; /* Base height */
+    width: 100%;   /* Fills the column width */
+    border-radius: 1rem;
+}
+
+@media (min-width: 768px) {
+    #map {
+        height: 400px;
+    }
+}
+
+/* Fix review cards alignment on small screens */
+@media (max-width: 576px) {
+    .card.col-12 {
+        margin-left: 0 !important;
+        width: 100%;
+    }
+}

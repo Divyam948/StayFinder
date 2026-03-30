@@ -5,98 +5,182 @@
         <button>Create New Listing</button>
     </form> -->
     <style>
+      /* 3. Horizontal Scrolling Filters */
       #filters {
         display: flex;
-        flex-wrap: wrap;
         align-items: center;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 0.5rem 0; /* Use padding instead of margin-top */
+        margin-top: 0;      /* Remove the 2rem margin you had earlier */
+        background-color: white;
+    }
+
+      /* Hide scrollbar for a clean look while keeping functionality */
+      #filters::-webkit-scrollbar {
+          display: none;
       }
 
       .filter {
         text-align: center;
-        margin-right: 0.5rem;
-        margin-top: 2rem;
+        margin-right: 2rem;
+        margin-top: 0.5rem; /* Reduced from 2rem to stop the push-down */
         opacity: 0.7;
-      }
+        flex: 0 0 auto;
+    }
 
       .filter:hover {
-        opacity: 1;
-        cursor: pointer;
+          opacity: 1;
+          cursor: pointer;
+          border-bottom: 2px solid #000;
       }
 
       .filter p {
-        font-size: 0.8rem;
+          font-size: 0.75rem;
+          margin-top: 4px;
       }
 
-      .tax-info {
-        display: none;
-      }
-
+      /* 4. Tax Toggle Styling */
       .tax-toggle {
-        border: 1px solid black;
-        border-radius: 1rem;
-        height: 3.25rem;
-        padding: 0.4rem;
-        margin-left: 2rem;
-        display: flex;
-        align-items: center;
+          border: 1px solid #ced4da;
+          border-radius: 1rem;
+          height: 3.25rem;
+          padding: 1rem;
+          margin-left: auto; /* Pushes to right on desktop */
+          display: flex;
+          align-items: center;
+          white-space: nowrap;
+      }
+
+      @media (max-width: 992px) {
+          .tax-toggle {
+              margin: 1rem auto; /* Centers toggle on smaller screens */
+              width: fit-content;
+          }
+      }
+
+      /* 5. Listing Cards & Images */
+      .listing-card {
+          border: none !important;
+          margin-bottom: 2rem;
+          transition: 0.3s;
+      }
+
+      .listing-card img {
+          border-radius: 1rem !important;
+          width: 100%;
+          object-fit: cover; /* Prevents image distortion */
+      }
+
+      .listing-link {
+          text-decoration: none;
+          color: #222;
+      }
+
+      .listing-card:hover img {
+          filter: brightness(0.9);
+      }
+
+      /* 6. Tax Info Toggle Logic */
+      .tax-info {
+          display: none;
+          color: #717171;
+          font-weight: 400;
+      }
+
+      /* Class added via JavaScript */
+      .show-tax {
+          display: inline !important;
+      }
+
+      .filter-link {
+          text-decoration: none;
+          color: inherit;
+      }
+      .filter-link:hover {
+          color: #fe424d; /* Airbnb Pink */
       }
     </style>
 
+    
+
     <div id="filters">
+      <a href="/listings?category=Trending" class="filter-link">
       <div class="filter">
         <div><i class="fa-solid fa-fire"></i></div>
         <p>Trending</p>
       </div>
+      </a>
 
+      <a href="/listings?category=Rooms" class="filter-link">
       <div class="filter">
         <div><i class="fa-solid fa-bed"></i></div>
         <p>Rooms</p>
       </div>
+      </a>
 
+      <a href="/listings?category=Iconic Cities" class="filter-link">
       <div class="filter">
         <div><i class="fa-solid fa-mountain-city"></i></div>
         <p>Iconic Cities</p>
       </div>
+      </a>
 
+      <a href="/listings?category=Mountains" class="filter-link">
       <div class="filter">
         <div><i class="fa-solid fa-mountain"></i></div>
         <p>Mountains</p>
       </div>
+      </a>
 
+      <a href="/listings?category=Castles" class="filter-link">
       <div class="filter">
         <div><i class="fa-brands fa-fort-awesome"></i></div>
         <p>Castles</p>
       </div>
+      </a>
 
+      <a href="/listings?category=Amazing Pool" class="filter-link">
       <div class="filter">
         <div><i class="fa-solid fa-person-swimming"></i></div>
         <p>Amazing Pool</p>
       </div>
+      </a>
 
+      <a href="/listings?category=Camping" class="filter-link">
       <div class="filter">
         <div><i class="fa-solid fa-campground"></i></div>
         <p>Camping</p>
       </div>
+      </a>
 
+      <a href="/listings?category=Farms" class="filter-link">
       <div class="filter">
         <div><i class="fa-solid fa-cow"></i></div>
         <p>Farms</p>
       </div>
+      </a>
 
+      <a href="/listings?category=Arctic" class="filter-link">
       <div class="filter">
         <div><i class="fa-regular fa-snowflake"></i></div>
         <p>Arctic</p>
       </div>
+      </a>
 
+      <a href="/listings?category=Domes" class="filter-link">
       <div class="filter">
         <div><i class="fa-solid fa-igloo"></i></div>
         <p>Domes</p>
       </div>
+      </a>
 
+      <a href="/listings?category=Boats" class="filter-link">
       <div class="filter">
         <div><i class="fa-solid fa-ship"></i></div>
         <p>Boats</p>
       </div>
+      </a>
 
       <div class="tax-toggle">
         <div class="form-check-reverse form-switch">
@@ -141,11 +225,12 @@
     let taxInfo = document.getElementsByClassName("tax-info");
     // console.log(taxInfo);
     for(info of taxInfo) {
-      if(info.style.display != "inline") {
-      info.style.display = "inline";
-      } else {
-        info.style.display = "none";
-      }
+      // if(info.style.display != "inline") {
+      // info.style.display = "inline";
+      // } else {
+      //   info.style.display = "none";
+      // }
+      info.classList.toggle("show-tax");
     }
   });
 </script>
